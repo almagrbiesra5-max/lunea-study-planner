@@ -1,0 +1,73 @@
+
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LUNÉA | مساحة وقتك وأحلامك</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Cairo:wght@400;500;600;700;800&family=Playfair+Display:wght@600;700&display=swap');
+:root{--deep:#9f2459;--pink:#d94f8d;--soft:#f7b8d0;--pale:#fff0f6;--cream:#fffafd;--ink:#54243a;--muted:#9d7185;--line:#f2d8e4;--white:#fff}
+*{box-sizing:border-box}body{margin:0;background:linear-gradient(135deg,#fff7fb,#fde8f1);color:var(--ink);font-family:'Cairo',sans-serif;min-height:100vh}
+header{background:linear-gradient(110deg,#8e1d50,#c33d79 60%,#e58bb3);color:white;padding:24px 6%;display:flex;justify-content:space-between;align-items:center;gap:15px;position:relative;overflow:hidden}
+header:after{content:'☾ ✦';position:absolute;left:8%;top:-20px;font-size:100px;opacity:.13}
+.brand{font-family:'Playfair Display',serif;font-size:36px;letter-spacing:3px;direction:ltr}.tag{font-size:12px;opacity:.9;margin-top:2px}.date{font-size:13px;background:#ffffff20;padding:9px 14px;border-radius:30px}
+.wrap{max-width:1180px;margin:28px auto;padding:0 18px}.hero{display:grid;grid-template-columns:1.4fr .8fr;gap:18px;margin-bottom:20px}
+.panel,.card{background:#fff;border:1px solid var(--line);border-radius:22px;padding:22px;box-shadow:0 8px 28px #a32d5b0d}
+.hero-main{background:linear-gradient(120deg,#fff,#ffe6f0);position:relative;overflow:hidden;min-height:175px}.hero-main h1{font-size:25px;margin:0 0 6px}.hero-main p{margin:0;color:#916177}.moon{position:absolute;left:35px;top:16px;font-size:76px;color:#c84c83;text-shadow:0 5px 20px #eaa2c1}
+.stats{display:grid;grid-template-columns:repeat(3,1fr);gap:10px;margin-top:20px}.stat{background:#fff9fc;border:1px solid var(--line);border-radius:15px;padding:10px;text-align:center}.stat strong{display:block;color:var(--deep);font-size:21px}
+.section-title{display:flex;align-items:center;justify-content:space-between;margin:25px 2px 12px}.section-title h2{font-size:19px;margin:0}.section-title span{color:var(--muted);font-size:12px}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.full{grid-column:1/-1}
+input,select,textarea{font-family:inherit;border:1px solid var(--line);border-radius:12px;padding:11px 12px;background:#fffafd;color:var(--ink);outline:none;width:100%;min-width:0}input:focus,select:focus,textarea:focus{border-color:var(--pink)}
+button{font-family:inherit;border:0;border-radius:12px;padding:10px 16px;background:var(--deep);color:#fff;cursor:pointer;font-weight:700}button:hover{background:#b3326c}button.secondary{background:#fce4ef;color:var(--deep)}button.small{padding:6px 10px;font-size:12px}
+.formrow{display:flex;gap:8px;margin:12px 0}.formrow>*{flex:1}.task{display:flex;align-items:center;gap:10px;padding:11px 0;border-bottom:1px solid #f7e8ef}.task:last-child{border:0}.task input{width:18px;height:18px;accent-color:var(--deep)}.task.done .taskname{text-decoration:line-through;color:#b89aaa}.taskname{flex:1}.empty{color:#b18b9e;text-align:center;padding:20px 0;font-size:13px}
+.timer{text-align:center;background:linear-gradient(145deg,#fff2f7,#fbd6e6)}.time{font-size:55px;font-weight:800;color:var(--deep);direction:ltr;font-variant-numeric:tabular-nums;margin:6px 0}.timer-actions{display:flex;justify-content:center;gap:8px;flex-wrap:wrap}.timer select{max-width:180px;margin:8px auto}
+.progress{height:10px;background:#f9e3ed;border-radius:20px;overflow:hidden;margin:10px 0}.progress div{height:100%;width:0;background:linear-gradient(90deg,#a72560,#ee8db6);border-radius:20px;transition:.3s}
+table{width:100%;border-collapse:collapse;font-size:13px}th,td{padding:10px 7px;text-align:right;border-bottom:1px solid #f4e3eb}th{color:var(--deep)}td button{padding:5px 9px}
+.quote{text-align:center;color:#a64b75;background:#fff5f9;font-size:14px}.moonpic{font-size:24px;margin-bottom:6px}
+footer{text-align:center;padding:28px;color:#a77a90;font-size:12px}
+@media(max-width:760px){.hero,.grid{grid-template-columns:1fr}.full{grid-column:auto}.brand{font-size:29px}.hero-main{min-height:155px}.moon{font-size:58px;left:18px}.stats{gap:6px}.panel,.card{padding:17px}}
+</style>
+</head>
+<body>
+<header><div><div class="brand">LUNÉA ☾</div><div class="tag">Your time. Your dreams. Your glow.</div></div><div class="date" id="today"></div></header>
+<main class="wrap">
+<section class="hero">
+<div class="panel hero-main"><div class="moon">☾</div><h1>أهلاً بكِ في مساحتك الهادئة ✨</h1><p>رتّبي يومكِ، خذي نفساً عميقاً، وخطوة صغيرة تقرّبك من أحلامك.</p><div class="stats"><div class="stat"><strong id="doneCount">0</strong><small>مهام منجزة</small></div><div class="stat"><strong id="allCount">0</strong><small>إجمالي المهام</small></div><div class="stat"><strong id="percent">0%</strong><small>إنجاز اليوم</small></div></div></div>
+<div class="panel"><div class="moonpic">🌙 ✦</div><h3 style="margin:0 0 5px">تقدّمك اليوم</h3><p style="font-size:12px;color:#9d7185;margin:0">كل إنجاز صغير يستحق الاحتفال.</p><div class="progress"><div id="progressBar"></div></div><div id="progressText" style="font-size:12px;color:#9d7185">ابدئي بإضافة أول مهمة لكِ</div></div>
+</section>
+<div class="section-title"><h2>مساحة يومكِ</h2><span>خططي بهدوء وابدئي بثقة</span></div>
+<section class="grid">
+<div class="card"><h3>♡ مهامي اليومية</h3><div class="formrow"><input id="taskInput" placeholder="اكتبي مهمة جديدة..."><button onclick="addTask()">إضافة</button></div><div id="tasks"></div></div>
+<div class="card timer"><h3>⏳ مؤقّت التركيز</h3><select id="duration" onchange="setDuration()"><option value="25">25 دقيقة تركيز</option><option value="15">15 دقيقة تركيز</option><option value="45">45 دقيقة تركيز</option><option value="5">5 دقائق استراحة</option></select><div class="time" id="clock">25:00</div><div class="timer-actions"><button onclick="startTimer()" id="timerBtn">ابدئي</button><button class="secondary" onclick="pauseTimer()">إيقاف مؤقت</button><button class="secondary" onclick="resetTimer()">إعادة</button></div><p style="font-size:12px;color:#9d7185">ركّزي على مهمة واحدة فقط، أنتِ قادرة 💗</p></div>
+<div class="card full"><h3>📚 جدول الدراسة والواجبات</h3><div class="formrow"><input id="subject" placeholder="المادة أو المهمة"><input id="due" type="date"><button onclick="addStudy()">إضافة للجدول</button></div><div style="overflow-x:auto"><table><thead><tr><th>المادة / المهمة</th><th>الموعد</th><th>حذف</th></tr></thead><tbody id="studyRows"><tr><td colspan="3" class="empty">لا توجد مواد بعد، أضيفي أول مادة ✨</td></tr></tbody></table></div></div>
+<div class="card"><h3>🎯 هدفي لهذا الأسبوع</h3><textarea id="goal" rows="3" placeholder="مثلاً: إنهاء مراجعة وحدتين..."></textarea><button style="margin-top:9px" onclick="saveGoal()">حفظ هدفي</button><p id="goalSaved" style="font-size:12px;color:#a64b75"></p></div>
+<div class="card quote"><div style="font-size:28px">☾</div><strong>تذكّري دائماً</strong><p>ليس عليكِ إنجاز كل شيء اليوم، فقط ابدئي بشيء واحد.</p><span>بهدوء، أنتِ تزهرين 🌷</span></div>
+</section>
+</main><footer>LUNÉA ☾ — مساحة صغيرة لأحلام كبيرة</footer>
+<script>
+const $=id=>document.getElementById(id);
+let tasks=JSON.parse(localStorage.getItem('lunea_tasks')||'[]');
+let studies=JSON.parse(localStorage.getItem('lunea_studies')||'[]');
+$('today').textContent=new Intl.DateTimeFormat('ar',{weekday:'long',year:'numeric',month:'long',day:'numeric'}).format(new Date());
+function saveTasks(){localStorage.setItem('lunea_tasks',JSON.stringify(tasks));renderTasks()}
+function addTask(){let v=$('taskInput').value.trim();if(!v)return;tasks.push({text:v,done:false});$('taskInput').value='';saveTasks()}
+function toggleTask(i){tasks[i].done=!tasks[i].done;saveTasks()}
+function deleteTask(i){tasks.splice(i,1);saveTasks()}
+function renderTasks(){$('tasks').innerHTML='';if(!tasks.length)$('tasks').innerHTML='<div class="empty">يومك يبدأ بخطوة صغيرة 🌸</div>';tasks.forEach((t,i)=>{let row=document.createElement('div');row.className='task'+(t.done?' done':'');let cb=document.createElement('input');cb.type='checkbox';cb.checked=t.done;cb.onchange=()=>toggleTask(i);let name=document.createElement('span');name.className='taskname';name.textContent=t.text;let del=document.createElement('button');del.className='secondary small';del.textContent='حذف';del.onclick=()=>deleteTask(i);row.append(cb,name,del);$('tasks').append(row)});let done=tasks.filter(t=>t.done).length,p=tasks.length?Math.round(done/tasks.length*100):0;$('doneCount').textContent=done;$('allCount').textContent=tasks.length;$('percent').textContent=p+'%';$('progressBar').style.width=p+'%';$('progressText').textContent=tasks.length?`أنجزتِ ${done} من ${tasks.length} مهام`:'ابدئي بإضافة أول مهمة لكِ'}
+function saveStudies(){localStorage.setItem('lunea_studies',JSON.stringify(studies));renderStudies()}
+function addStudy(){let name=$('subject').value.trim(),date=$('due').value;if(!name)return;studies.push({name,date});$('subject').value='';$('due').value='';saveStudies()}
+function removeStudy(i){studies.splice(i,1);saveStudies()}
+function renderStudies(){$('studyRows').innerHTML='';if(!studies.length){$('studyRows').innerHTML='<tr><td colspan="3" class="empty">لا توجد مواد بعد، أضيفي أول مادة ✨</td></tr>';return}studies.forEach((s,i)=>{let tr=document.createElement('tr');let a=document.createElement('td');a.textContent=s.name;let b=document.createElement('td');b.textContent=s.date||'لم يُحدد';let c=document.createElement('td');let btn=document.createElement('button');btn.className='secondary';btn.textContent='حذف';btn.onclick=()=>removeStudy(i);c.append(btn);tr.append(a,b,c);$('studyRows').append(tr)})}
+$('goal').value=localStorage.getItem('lunea_goal')||'';function saveGoal(){localStorage.setItem('lunea_goal',$('goal').value);$('goalSaved').textContent='تم حفظ هدفكِ بنجاح 💗'}
+let total=25*60,remaining=total,interval=null;
+function showTime(){$('clock').textContent=String(Math.floor(remaining/60)).padStart(2,'0')+':'+String(remaining%60).padStart(2,'0')}
+function setDuration(){pauseTimer();total=Number($('duration').value)*60;remaining=total;showTime();$('timerBtn').textContent='ابدئي'}
+function startTimer(){if(interval)return;$('timerBtn').textContent='يعمل الآن';interval=setInterval(()=>{remaining--;showTime();if(remaining<=0){pauseTimer();$('timerBtn').textContent='انتهى الوقت';alert('أحسنتِ! انتهت الجلسة، خذي استراحة قصيرة 💗')}},1000)}
+function pauseTimer(){if(interval){clearInterval(interval);interval=null}$('timerBtn').textContent='متابعة'}
+function resetTimer(){pauseTimer();remaining=total;showTime();$('timerBtn').textContent='ابدئي'}
+renderTasks();renderStudies();showTime();
+$('taskInput').addEventListener('keydown',e=>{if(e.key==='Enter')addTask()});
+</script>
+</body>
+</html>
